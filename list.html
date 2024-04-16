@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Insert and Delete Information</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    #container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    #inputField {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    .item {
+        background-color: #f4f4f4;
+        padding: 10px;
+        margin-bottom: 5px;
+    }
+    .delete-btn {
+        cursor: pointer;
+        color: red;
+        float: right;
+    }
+</style>
+</head>
+<body>
+<div id="container">
+    <h2>Insert and Delete Information</h2>
+    <input type="text" id="inputField" placeholder="Enter information">
+    <button onclick="addItem()">Add Item</button>
+    <div id="itemsContainer"></div>
+</div>
+
+<script>
+    // Check if there's any data stored in localStorage and display it
+    window.onload = function() {
+        if(localStorage.getItem('items')) {
+            document.getElementById('itemsContainer').innerHTML = localStorage.getItem('items');
+        }
+    }
+
+    // Function to add an item
+    function addItem() {
+        var inputField = document.getElementById('inputField');
+        var inputValue = inputField.value.trim();
+
+        if(inputValue !== '') {
+            var item = '<div class="item">' + inputValue + '<span class="delete-btn" onclick="deleteItem(this)">X</span></div>';
+            document.getElementById('itemsContainer').innerHTML += item;
+
+            // Save items to localStorage
+            localStorage.setItem('items', document.getElementById('itemsContainer').innerHTML);
+
+            inputField.value = ''; // Clear input field
+        }
+    }
+
+    // Function to delete an item
+    function deleteItem(element) {
+        var item = element.parentElement;
+        item.remove();
+
+        // Save items to localStorage after deletion
+        localStorage.setItem('items', document.getElementById('itemsContainer').innerHTML);
+    }
+</script>
+</body>
+</html>
