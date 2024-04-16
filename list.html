@@ -7,26 +7,57 @@
 <style>
     body {
         font-family: Arial, sans-serif;
+        background-color: #f7f7f7;
     }
     #container {
         max-width: 600px;
         margin: 0 auto;
         padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+        color: #333;
     }
     #inputField {
-        width: 100%;
+        width: calc(100% - 22px);
         padding: 10px;
         margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    #inputField:focus {
+        outline: none;
+        border-color: #66afe9;
+    }
+    button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #45a049;
     }
     .item {
-        background-color: #f4f4f4;
+        background-color: #e9e9e9;
         padding: 10px;
         margin-bottom: 5px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
     .delete-btn {
         cursor: pointer;
         color: red;
         float: right;
+    }
+    footer {
+        text-align: center;
+        margin-top: 20px;
+        color: #666;
     }
 </style>
 </head>
@@ -36,9 +67,11 @@
     <input type="text" id="inputField" placeholder="Enter information">
     <button onclick="addItem()">Add Item</button>
     <div id="itemsContainer"></div>
+    <footer>Created by Diego</footer>
 </div>
 
 <script>
+    // JavaScript code remains unchanged
     // Check if there's any data stored in localStorage and display it
     window.onload = function() {
         if(localStorage.getItem('items')) {
